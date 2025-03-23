@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST Z HTML, CSS, JS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #000;
+            color: #0f0;
+            padding: 20px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .button-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        button {
+            background-color: #000;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #000;
+            border: 2px solid #0f0;
+            z-index: 10;
+        }
+
+        .dropdown button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            border: none;
+            margin: 0;
+            border-top: 1px solid #0f0;
+        }
+
+        .dropdown button:first-child {
+            border-top: none;
+        }
+
+        .dropdown button:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .gallery {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            border: 2px solid #0f0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #222;
+        }
+
+        .gallery img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .gallery img.active {
+            display: block;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #000;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .arrow:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .arrow.left {
+            left: -40px;
+        }
+
+        .arrow.right {
+            right: -40px;
+        }
+
+        .hidden-text {
+            display: none;
+            margin-top: 20px;
+            color: rgb(255, 0, 0);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000;
+            padding: 20px;
+            border: 2px solid #0f0;
+            color: #fff;
+        }
+
+        .popup button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>YOU FOUND US</h1>
+
+    <div class="buttons">
+        <div class="button-wrapper">
+            <button onclick="toggleDropdown('info-dropdown')">INFO</button>
+            <div id="info-dropdown" class="dropdown">
+                <button>WHAT WE DO</button>
+                <button>GET TO KNOW US</button>
+                <button>SERVICES WE PROVIDE</button>
+            </div>
+        </div>
+
+        <div class="button-wrapper">
+            <button onclick="toggleDropdown('photos-dropdown')">PHOTOS</button>
+            <div id="photos-dropdown" class="dropdown">
+                <button>OUR MEMBERS</button>
+                <button>OUR TOOLS</button>
+            </div>
+        </div>
+
+        <div class="button-wrapper">
+            <button onclick="toggleDropdown('contacts-dropdown')">CONTACTS</button>
+            <div id="contacts-dropdown" class="dropdown">
+                <button>CONTACT US</button>
+                <button>WHERE YOU CAN MEET US</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="arrow left" onclick="changeImage(-1)">&#9664;</div>
+        <img src="img1.jpg" class="active" alt="Image 1">
+        <img src="img2.jpg" alt="Image 2">
+        <img src="img3.jpg" alt="Image 3">
+        <img src="img4.jpg" alt="Image 4">
+        <img src="img5.jpg" alt="Image 5">
+        <div class="arrow right" onclick="changeImage(1)">&#9654;</div>
+    </div>
+
+    <button id="secrets-button">SECRETS</button>
+    <div id="hidden-text" class="hidden-text">
+        本组织需要忠诚和纪律。立即加入，以贡献您的力量。
+    </div>
+
+    <button id="popup-button">see for yourself :)</button>
+    <div id="popup" class="popup">
+        <p>DO YOU DARE?</p>
+        <button id="right-button">YES, I DO</button>
+        <button id="wrong-button">NO, I'M SCARED</button>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+
+        function changeImage(direction) {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.getElementById('secrets-button').addEventListener('click', () => {
+            const hiddenText = document.getElementById('hidden-text');
+            hiddenText.style.display = hiddenText.style.display === 'none' || hiddenText.style.display === '' ? 'block' : 'none';
+        });
+
+        document.getElementById('popup-button').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'block';
+        });
+
+        document.getElementById('wrong-button').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        document.getElementById('right-button').addEventListener('click', () => {
+            window.location.href = 'https://www.instagram.com/that_cult_leader/';
+        });
+    </script>
+</body>
+</html>

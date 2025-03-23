@@ -6,12 +6,6 @@ import sys
 import sqlite3
 import json
 
-
-
-# Hello, should you find the program crashing, please use the Edit function, and find all the "sp/" and rewrite them to simply "./".
-# I found out that for some reason, on some PCs, sp/ works, and on some ./ works. For example on mine, sp/ works, ./ doesn't.
-# Please be mindful of this. I don't know how to fix this, but rewriting it according to needs seems to be the easiest way.
-# Enjoy!
 pygame.init()
 
 CONFIG = {
@@ -28,7 +22,7 @@ CONFIG = {
     "BORDER_THICKNESS": 8,
     "BORDER_MARGIN": 80,
     "HEART_SIZE": 50,
-    "FONT_PATH": "sp/Chara.ttf",        # seeing this font on your screen fills you with determination. HP fully restored.
+    "FONT_PATH": "./Chara.ttf",        # seeing this font on your screen fills you with determination. HP fully restored.
     "FONT_SIZE_DEFAULT": 56,
     "FONT_SIZE_SMALL": 32,
     "FONT_SIZE_BIG": 100,
@@ -262,7 +256,7 @@ def save_user_settings():
         print("Error saving settings:", e)
 
 
-heart_img = pygame.image.load("sp/heart.png").convert_alpha()
+heart_img = pygame.image.load("./heart.png").convert_alpha()
 heart_img = pygame.transform.scale(heart_img, (44, 44))
 
 death_heart_img = pygame.image.load(os.path.join(script_dir, "heart.png"))
@@ -1074,7 +1068,7 @@ def revival_sequence():
 
 
 def flashing_text_revive(message, duration=1):
-    local_font = pygame.font.Font("sp/Chara.ttf", 50)
+    local_font = pygame.font.Font("./Chara.ttf", 50)
     start_timev = time.time()
     while time.time() - start_timev < duration:
         screen.fill(BLACK)
@@ -1087,8 +1081,8 @@ def flashing_text_revive(message, duration=1):
 
 def revive_game(game_time=10):
     # This used to be completely separate project but it seemed fitting with what I was going for so.. Here it is
-    heart_img_revive = pygame.image.load("sp/heart.png")
-    bone_img = pygame.image.load("sp/bone.png")
+    heart_img_revive = pygame.image.load("./heart.png")
+    bone_img = pygame.image.load("./bone.png")
     player_size = 40
     heart_img_revive = pygame.transform.scale(heart_img_revive, (player_size, player_size))
     bone_width = 40
@@ -1099,7 +1093,7 @@ def revive_game(game_time=10):
     WHITE2 = (255, 255, 255)
     YELLOW2 = (255, 255, 0)
     clock2 = pygame.time.Clock()
-    funny_font = pygame.font.Font("sp/funny.ttf", 50)
+    funny_font = pygame.font.Font("./funny.ttf", 50)
     arena_width = 600
     arena_height = 400
     border_left2 = (WIDTH // 2) - (arena_width // 2)
@@ -1119,7 +1113,7 @@ def revive_game(game_time=10):
     bones = []
     bone_spawn_timer = 0
     start_ticks = pygame.time.get_ticks()
-    chara_font2 = pygame.font.Font("sp/Chara.ttf", 50)
+    chara_font2 = pygame.font.Font("./Chara.ttf", 50)
 
     def draw_player(x, y):
         screen.blit(heart_img_revive, (x, y))
@@ -1218,7 +1212,7 @@ def revive_game(game_time=10):
 
 def flashing_text_revive(message, duration=1):
     # Uh..
-    local_font = pygame.font.Font("sp/Chara.ttf", 50)
+    local_font = pygame.font.Font("./Chara.ttf", 50)
     start_timev = time.time()
     while time.time() - start_timev < duration:
         screen.fill(BLACK)

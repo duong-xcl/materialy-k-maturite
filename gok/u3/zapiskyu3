@@ -1,0 +1,11 @@
+
+
+
+dale - X - execute. nebude v testu.
+dale - A - append. bude dulezite pozdeji.
+utf-8 je univerzalni znakova sada. Unicode Transformation Format 8 bitu.
+jsonfile neni string ale stream dat. konstantni prenos dat. file stream
+json.load je funkce ktera umoznuje ze streamu/stringu dictionary.
+write_config_json prijima cestu/data.
+json.dumps - funkce ktera predela slovnik do stringu.
+f.write - zapise fuknci ve stringu.
